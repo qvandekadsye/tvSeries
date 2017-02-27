@@ -2,9 +2,13 @@
 # http://symfony.com/doc/current/security.html
 security:
     access_control:
-               - {path: ^/serie/create, roles: IS_AUTHENTICATED_FULLY}
-               - {path: ^/episode/create/*, roles: ROLE_USER}
-               - {path: ^/episode/delete/*, roles: ROLE_USER}
+               - {path: ^/series/create, roles: ROLE_USER}
+               - {path: ^/episode/*, roles: ROLE_USER}
+               - {path: ^/user/new, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+               - {path: ^/user/*, roles: ROLE_USER}
+               - {path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+
+
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt

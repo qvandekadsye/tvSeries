@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Episode
  * @package AppBundle\Entity
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EpisodeRepository")
+ * @ORM\Entity
  *
  */
 class Episode
