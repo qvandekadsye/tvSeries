@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet", type="text/css" href="{{ asset('css/main.css') }}">
+    </head>
+    <body>
+        <nav>
+            <div class=" header-nav"></div>
+            <ul>
+                {% if is_granted('ROLE_USER') %}
+                <li>
+                    <a href="">Les séries</a>
+                </li>
+                <li>
+                    <a href="">Mon compte</a>
+                </li>
+                <li>
+                    <a href="/logout">Déconnexion</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/login">Connexion</a>
+                </li>
+                <li>
+                    <a href="/user/create">S'inscrire</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="container">
+        {% block body %}{% endblock %}
+        </div>
+        <footer>
+            Quentin VAN DE KADSYE
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

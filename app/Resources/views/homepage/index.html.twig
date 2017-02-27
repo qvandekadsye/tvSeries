@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h1>Liste des séries disponibles</h1>
+    <div class="listeSérie">
+        {% for s in series   %}
+            <a href="/serie/{{ s.name }}" class="serie">
+                <img class="imgserie" src="{{ s.image }}" alt="Image - {{ s.name }}"/>
+                <span class="title-serie">{{ s.name }}</span>
+                <span class="author-serie"> Créée par : {{ s.author }}</span>
+                <p class="serie-description">Description : {{ s.description }}</p>
+            </a>
+        {% endfor %}
+    </div>
+<ul>
+
+</ul>
+{% endblock %}
+

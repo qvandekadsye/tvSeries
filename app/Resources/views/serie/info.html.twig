@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="info-serie">
+        <h1 class="seriesname">{{ serie.name }}</h1>
+        <section id="info">
+            <header>
+                <h1>Informations</h1>
+                <img class="imgserie" style="width: 30%; text-align: center" src="{{ serie.image }}" alt="image - {{ serie.name }}"/>
+            </header>
+            <ul>
+                <li>Nom : {{ serie.name }}</li>
+                <li>Auteur : {{ serie.author }}</li>
+                <li>Date de sortie</li>
+            </ul>
+            <section>
+                <header>
+                    <h1>Description</h1>
+                </header>
+                <p>{{ serie.description }}</p>
+            </section>
+        </section>
+            <section>
+                <header>
+                    <h1>Episode</h1>
+                </header>
+                {% if serie.episodes is defined %}
+                <div class="episodesListe">
+                    {% for e in serie.episodes %}
+                        <div class="episode">
+                        {{ e.episodenumber }} - {{ e.name }}
+                        <form method="post" action="{{ path("episode_seen", {"id" : e.id}) }}">
+                            <button type="submit">Vu!</button>
+                        </form>
+                            </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <a href="/episode/new">Ajouter un épisode</a>
+            </section>
+        </div>
+{%  endblock %}
