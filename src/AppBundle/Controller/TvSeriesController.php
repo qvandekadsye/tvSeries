@@ -56,13 +56,52 @@ class TvSeriesController extends Controller
      */
     public function showAction(TvSeries $serie)
     {
+        $deleteForm = $this->createDeleteForm($serie);
 
 
         return $this->render('serie/info.html.twig', array(
             'serie' => $serie,
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
+            'delete_form' => $deleteForm->createView()
 
         ));
+    }
+
+
+    /**
+     * Deletes a tv_series entity.
+     *
+     * @Route("/{id}", name="serie_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, TvSeries $serie)
+    {
+        $form = $this->createDeleteForm($serie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($serie);
+            $em->flush($serie);
+        }
+
+        return $this->redirectToRoute('tvseries');
+    }
+
+    /**
+     * Creates a form to delete a episode entity.
+     *
+     * @param Episode $episode The episode entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(TvSeries $series)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('serie_delete', array('id' => $series->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+            ;
     }
 
 

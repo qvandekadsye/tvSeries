@@ -36,6 +36,11 @@
                 </div>
                 {% endif %}
                 <a href="/episode/new">Ajouter un épisode</a>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
             </section>
         </div>
 {%  endblock %}
